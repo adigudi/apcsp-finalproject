@@ -4,7 +4,7 @@
 #define TRUE 0
 #define FALSE 1
 
-struct studentGrades
+struct Student
 {
   char firstname[256];
   char lastname[256];
@@ -19,14 +19,20 @@ void printStudent(struct Student* student)
   printf("Last Name: %s\n", student->lastname);
   printf("Student ID: %d\n", student->sid);
   printf("Grade Percent: %d\n", student->gradePercent);
-  printf("Grade: %d\n", student->gradeLetter);
+}
+
+void calculateGradeLetter(struct Student student){
+        for (int i = 0; i < count; i++){
+        printf("%d\n", student[i].gradePercent);
+        }
+
 }
 
 int main()
 {
   char input[256];
   char ans;
-  struct studentGrades grades[256];
+  struct Student students[256];
   int b = TRUE;
   int count = 0;
   while (b == 0)
@@ -41,23 +47,24 @@ int main()
       char lastname[100];
       int age;
       int sID;
+      int gradePercent;
       printf("Enter First Name of Student:  ");
       fgets(input, 100, stdin);
       sscanf(input, "%s", firstname);
       printf("Enter Last Name of Student:  ");
       fgets(input, 100, stdin);
       sscanf(input, "%s", lastname);
-      printf("Enter Age of Student:  ");
-      fgets(input, 100, stdin);
-      sscanf(input, "%d", &age);
-      printf("Enter Student ID of Student:  ");
+      printf("Enter Student ID of Student: ");
       fgets(input, 100, stdin);
       sscanf(input, "%d", &sID);
+      printf("Enter Grade Percent of Student:  ");
+      fgets(input, 100, stdin);
+      sscanf(input, "%d", &gradePercent);
       printf("\n");
       strcpy(students[count].firstname, firstname);
       strcpy(students[count].lastname, lastname);
-      students[count].age = age;
       students[count].sid = sID;
+      students[count].gradePercent = gradePercent;
       count++;
     }
     else
@@ -66,6 +73,7 @@ int main()
       for (int i = 0; i < count; i++)
       {
         printStudent(&students[i]);
+	calculateGradeLetter(students[count]);
       }
     }
   }
